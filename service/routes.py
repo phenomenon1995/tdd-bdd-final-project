@@ -118,8 +118,8 @@ def list_products():
         category_value = getattr(Category, category.upper())
         products = Product.find_by_category(category_value)
     elif available:
-        app.logger.info(f"Find by available: {available_value}")
         available_value = available.lower() in ["true", "yes", "1"]
+        app.logger.info(f"Find by available: {available_value}")
         products = Product.find_by_availability(available_value)
     else:
         app.logger.info("Find all")

@@ -49,4 +49,10 @@ def step_impl(context):
     for row in context.table:
         #
         # ADD YOUR CODE HERE TO CREATE PRODUCTS VIA THE REST API
-        #
+        product_json = {
+            "name": row["name"],
+            "description": row["description"],
+            "price": row["price"],
+            "available": row["available"] in ["True", "True", "1"],
+            "category": row["category"],
+        }
