@@ -160,6 +160,7 @@ def update_products(product_id):
     product.deserialize(request.get_json())
     product.id = product_id
     product.update()
+    app.logger.info(f"Updated product {product} successfully!")
     return product.serialize(), status.HTTP_200_OK
 
 ######################################################################

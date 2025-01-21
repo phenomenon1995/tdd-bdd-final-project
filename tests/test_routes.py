@@ -228,11 +228,11 @@ class TestProductRoutes(TestCase):
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
 
         new_product = response.get_json()
-        new_product["description"] = "unknown"
+        new_product["name"] = "Fedora"
         response = self.client.put(f"{BASE_URL}/{new_product['id']}", json=new_product)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         updated_product = response.get_json()
-        self.assertEqual(updated_product["description"], "unknown")
+        self.assertEqual(updated_product["name"], "Fedora")
 
     def test_update_product_not_found(self):
         """It should not update a Product thats not found"""
