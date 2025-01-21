@@ -24,29 +24,31 @@ from service.models import Product, Category
 from service.common import status  # HTTP Status Codes
 from . import app
 
-
-
 ######################################################################
 # H E A L T H   C H E C K
 ######################################################################
+
+
 @app.route("/health")
 def healthcheck():
     """Let them know our heart is still beating"""
     return jsonify(status=200, message="OK"), status.HTTP_200_OK
 
-
 ######################################################################
 # H O M E   P A G E
 ######################################################################
+
+
 @app.route("/")
 def index():
     """Base URL for our service"""
     return app.send_static_file("index.html")
 
-
 ######################################################################
 #  U T I L I T Y   F U N C T I O N S
 ######################################################################
+
+
 def check_content_type(content_type):
     """Checks that the media type is correct"""
     if "Content-Type" not in request.headers:
@@ -65,10 +67,11 @@ def check_content_type(content_type):
         f"Content-Type must be {content_type}",
     )
 
-
 ######################################################################
 # C R E A T E   A   N E W   P R O D U C T
 ######################################################################
+
+
 @app.route("/products", methods=["POST"])
 def create_products():
     """
@@ -129,13 +132,14 @@ def list_products():
     app.logger.info(f"{len(results)} total products returned")
     return results, status.HTTP_200_OK
 
-
 ######################################################################
 # R E A D   A   P R O D U C T
 ######################################################################
 
 #
 # PLACE YOUR CODE HERE TO READ A PRODUCT
+
+
 @app.route("/products/<int:product_id>", methods=["GET"])
 def get_products(product_id):
     """Find a product given the provided product_id and returns to caller"""
@@ -150,7 +154,9 @@ def get_products(product_id):
 
 #
 # PLACE YOUR CODE TO UPDATE A PRODUCT HERE
-@app.route("/products/<int:product_id>", methods = ["PUT"])
+
+
+@app.route("/products/<int:product_id>", methods=["PUT"])
 def update_products(product_id):
     app.logger.info("Request to Update a product with id [%s]", product_id)
     check_content_type("application/json")
@@ -167,10 +173,11 @@ def update_products(product_id):
 # D E L E T E   A   P R O D U C T
 ######################################################################
 
-
 #
 # PLACE YOUR CODE TO DELETE A PRODUCT HERE
 #
+
+
 @app.route("/products/<int:product_id>", methods=["DELETE"])
 def delete_products(product_id):
     """
